@@ -1,0 +1,179 @@
+---
+layout: common
+permalink: /
+---
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exp-Force: Experience-Conditioned Pre-Grasp Force Selection with Vision-Language Models</title>
+  <meta property="og:title" content="Exp-Force">
+  <meta property="og:description" content="An experience-conditioned framework that predicts minimum feasible grasping force from a single RGB image.">
+
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <script src="https://kit.fontawesome.com/ef67f68cfb.js" crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const videos = document.querySelectorAll('video.lazy-video');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.play();
+          } else {
+            entry.target.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+      videos.forEach(video => observer.observe(video));
+    });
+  </script>
+
+  <style type="text/css" media="all">
+    body {
+      font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      text-align: center;
+    }
+    h1 { font-weight: 300; }
+    h2 { font-weight: 300; font-size: 24px; }
+    h3 { font-weight: 300; }
+    a {
+      color: #005577;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover { text-decoration: underline; }
+    #primarycontent {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      max-width: 1000px;
+    }
+    IMG {
+      padding: 0;
+      display: block;
+      margin: auto;
+    }
+    hr {
+      border: 0;
+      height: 1px;
+      max-width: 1100px;
+      background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+    }
+    pre {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      color: #666;
+      font-family: monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 1.6em;
+      max-width: 100%;
+      overflow: auto;
+      padding: 10px;
+      display: block;
+      word-wrap: break-word;
+    }
+    .badge {
+      display: inline-block;
+      margin: 4px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      background: #f0f4f8;
+      border: 1px solid #c8d6e5;
+    }
+    .result-highlight {
+      color: #c0392b;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+<div id="primarycontent">
+  <div style="height: 12px;"></div>
+
+  <center>
+    <h1>
+      <strong>Exp-Force: Experience-Conditioned Pre-Grasp<br>Force Selection with Vision-Language Models</strong>
+    </h1>
+  </center>
+
+  <center>
+    <h3>
+      <!-- TODO: Uncomment and update when paper/code are available -->
+      <!-- <a href="#"><i class="ai ai-arxiv"></i> Paper</a> | -->
+      <!-- <a href="#"><i class="fa-brands fa-github"></i> Code</a> -->
+    </h3>
+  </center>
+
+  <table border="0" cellspacing="10" cellpadding="0" align="center">
+    <tbody>
+      <tr>
+        <td align="center" valign="middle">
+          <video muted autoplay loop width="798" style="border-radius: 4px;">
+            <source src="{{ '/src/video/header.mov' | relative_url }}" type="video/quicktime">
+            <source src="{{ '/src/video/header.mov' | relative_url }}" type="video/mp4">
+          </video>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <table align="center" width="800px">
+      <tr>
+        <td>
+          <p align="justify">
+            Accurate pre-contact grasp force selection is critical for safe and reliable robotic manipulation.
+            Adaptive controllers regulate force after contact but still require a reasonable initial estimate.
+            Starting a grasp with too little force requires reactive adjustment, while starting with too high a
+            force risks damaging fragile objects. This trade-off is particularly challenging for compliant grippers,
+            whose contact mechanics are difficult to model analytically.
+          </p>
+          <p align="justify">
+            We propose <strong>Exp-Force</strong>, an experience-conditioned framework that predicts the minimum
+            feasible grasping force from a single RGB image. The method retrieves a small set of relevant prior
+            grasping experiences and conditions a vision&ndash;language model on these examples for in-context
+            inference, without analytic contact models or manually designed heuristics.
+          </p>
+          <p align="justify">
+            On 129 object instances, Exp-Force achieves a best-case MAE of <span class="result-highlight">0.426&thinsp;N</span>,
+            reducing error by <span class="result-highlight">72%</span> over zero-shot inference. In real-world
+            tests on 30 unseen objects, it improves appropriate force selection from 67% to
+            <span class="result-highlight">91%</span>.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </p>
+
+  <hr>
+  <center><h2>Citation</h2></center>
+
+  <table align="center" width="800px">
+    <tr>
+      <td>
+        <pre><code>@misc{expforce2026,
+  title         = {Exp-Force: Experience-Conditioned Pre-Grasp Force Selection
+                   with Vision-Language Models},
+  year          = {2026},
+  eprint        = {TODO},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO}
+}</code></pre>
+      </td>
+    </tr>
+  </table>
+
+  <div style="height: 40px;"></div>
+</div>
+</body>

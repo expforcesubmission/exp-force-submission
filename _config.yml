@@ -1,0 +1,21 @@
+title: "Exp-Force: Experience-Conditioned Pre-Grasp Force Selection with Vision-Language Models"
+description: >-
+  An experience-conditioned framework that predicts the minimum feasible grasping
+  force from a single RGB image using vision-language models and in-context inference.
+baseurl: "/exp-force-submission"
+url: "https://expforcesubmission.github.io"
+
+github_username: expforcesubmission
+
+# Build settings
+plugins:
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .sass-cache/
+  - .jekyll-cache/
+  - vendor/
+  - "Timeline 1.mov"
