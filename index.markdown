@@ -159,16 +159,6 @@ permalink: /
       <tr>
         <td align="center" valign="middle">
           <video muted autoplay loop playsinline width="100%" style="border-radius: 4px;">
-            <source src="{{ '/src/video/papercup.mp4' | relative_url }}" type="video/mp4">
-          </video>
-        </td>
-      </tr>
-      <tr>
-        <td align="center" valign="top"><p style="font-size: 16px; margin: 0; padding-bottom: 20px;">Paper Cup</p></td>
-      </tr>
-      <tr>
-        <td align="center" valign="middle">
-          <video muted autoplay loop playsinline width="100%" style="border-radius: 4px;">
             <source src="{{ '/src/video/champagne-glass.mp4' | relative_url }}" type="video/mp4">
           </video>
         </td>
@@ -181,39 +171,49 @@ permalink: /
 
   <br>
 
-  <center><h2>Grasping Light and Fragile Objects</h2></center>
+  <center><h2>Grasping Fragile and Light Objects</h2></center>
   <table border="0" cellspacing="10" cellpadding="0" align="center" width="800px">
     <tbody>
       <tr>
         <td align="center" valign="middle">
           <video muted autoplay loop playsinline width="100%" style="border-radius: 4px;">
-            <source src="{{ '/src/video/pringles.mp4' | relative_url }}" type="video/mp4">
+            <source src="{{ '/src/video/Fragile-Light.mp4' | relative_url }}" type="video/mp4">
           </video>
         </td>
       </tr>
-      <tr>
-        <!-- <td align="center" valign="top"><p style="font-size: 16px; margin: 0; padding-bottom: 20px;">Pringles</p></td> -->
-      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <center><h2>Grasping Fragile and Heavy Objects</h2></center>
+  <table border="0" cellspacing="10" cellpadding="0" align="center" width="800px">
+    <tbody>
       <tr>
         <td align="center" valign="middle">
           <video muted autoplay loop playsinline width="100%" style="border-radius: 4px;">
-            <source src="{{ '/src/video/raspberry.mp4' | relative_url }}" type="video/mp4">
+            <source src="{{ '/src/video/Fragile-Heavy.mp4' | relative_url }}" type="video/mp4">
           </video>
         </td>
       </tr>
-      <tr>
-        <!-- <td align="center" valign="top"><p style="font-size: 16px; margin: 0; padding-bottom: 20px;">Raspberry</p></td> -->
-      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <center><h2>Grasping Bottle and Odd Objects</h2></center>
+  <table border="0" cellspacing="10" cellpadding="0" align="center" width="800px">
+    <tbody>
       <tr>
         <td align="center" valign="middle">
           <video muted autoplay loop playsinline width="100%" style="border-radius: 4px;">
-            <source src="{{ '/src/video/red-plastic-cup.mp4' | relative_url }}" type="video/mp4">
+            <source src="{{ '/src/video/Bottles & Odd.mp4' | relative_url }}" type="video/mp4">
           </video>
         </td>
       </tr>
-      <tr>
-        <!-- <td align="center" valign="top"><p style="font-size: 16px; margin: 0;">Red Plastic Cup</p></td> -->
-      </tr>
+      <tr></tr>
     </tbody>
   </table>
 
