@@ -304,7 +304,7 @@ permalink: /
           <p align="justify">
             Accurate pre-contact grasp force selection is critical for safe and reliable robotic manipulation.
             Adaptive controllers regulate force after contact but still require a reasonable initial estimate.
-            Starting a grasp with too little force requires reactive adjustment, while starting with too high a
+            Starting a grasp with too little force requires reactive adjustment, while starting a grasp with too high a
             force risks damaging fragile objects. This trade-off is particularly challenging for compliant grippers,
             whose contact mechanics are difficult to model analytically.
           </p>
@@ -315,10 +315,11 @@ permalink: /
             inference, without analytic contact models or manually designed heuristics.
           </p>
           <p align="justify">
-            On 129 object instances, Exp-Force achieves a best-case MAE of <span class="result-highlight">0.426&thinsp;N</span>,
+            On 129 object instances, Exp-Force achieves a best-case MAE of <span class="result-highlight">0.43&thinsp;N</span>,
             reducing error by <span class="result-highlight">72%</span> over zero-shot inference. In real-world
-            tests on 30 unseen objects, it improves appropriate force selection from 67% to
-            <span class="result-highlight">91%</span>.
+            tests on 30 unseen objects, it improves appropriate force selection rate from 63% to
+            <span class="result-highlight">87%</span>. These results demonstrate that Exp-Force enables reliable
+            and generalizable pre-grasp force selection by leveraging prior interaction experiences.
           </p>
         </td>
       </tr>
