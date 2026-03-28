@@ -27,6 +27,48 @@ permalink: /
         });
       }, { threshold: 0.5 });
       videos.forEach(video => observer.observe(video));
+
+      const modal = document.querySelector('[data-image-modal]');
+      const modalImage = document.querySelector('[data-image-modal-content]');
+      const modalCaption = document.querySelector('[data-image-modal-caption]');
+      const modalClose = document.querySelector('[data-image-modal-close]');
+
+      if (modal && modalImage && modalCaption && modalClose) {
+        const openModal = (src, alt) => {
+          modalImage.src = src;
+          modalImage.alt = alt;
+          modalCaption.textContent = alt;
+          modal.hidden = false;
+          document.body.style.overflow = 'hidden';
+        };
+
+        const closeModal = () => {
+          modal.hidden = true;
+          modalImage.removeAttribute('src');
+          modalImage.alt = '';
+          modalCaption.textContent = '';
+          document.body.style.overflow = '';
+        };
+
+        document.querySelectorAll('[data-enlarge-image]').forEach(link => {
+          link.addEventListener('click', event => {
+            event.preventDefault();
+            openModal(link.href, link.dataset.imageAlt || 'Dataset image');
+          });
+        });
+
+        modal.addEventListener('click', event => {
+          if (event.target === modal || event.target === modalClose) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && !modal.hidden) {
+            closeModal();
+          }
+        });
+      }
     });
   </script>
 
@@ -93,6 +135,146 @@ permalink: /
     .result-highlight {
       color: #c0392b;
       font-weight: 600;
+    }
+    .dataset-summary {
+      max-width: 800px;
+      margin: 0 auto 12px;
+      text-align: justify;
+    }
+    .dataset-details {
+      max-width: 900px;
+      margin: 0 auto;
+      border: 1px solid #d9e2ec;
+      border-radius: 8px;
+      background: #fafcff;
+      overflow: hidden;
+    }
+    .dataset-details summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 14px 18px;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: left;
+      background: #f0f4f8;
+    }
+    .dataset-details summary::-webkit-details-marker {
+      display: none;
+    }
+    .dataset-details summary::after {
+      content: "+";
+      float: right;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .dataset-details[open] summary::after {
+      content: "\2212";
+    }
+    .dataset-table-wrap {
+      overflow-x: auto;
+      padding: 0 18px 18px;
+    }
+    .dataset-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      background: #ffffff;
+    }
+    .dataset-table th,
+    .dataset-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e6ecf2;
+      vertical-align: middle;
+    }
+    .dataset-table th {
+      text-align: left;
+      background: #f8fafc;
+      font-weight: 600;
+    }
+    .dataset-table td.dataset-number {
+      white-space: nowrap;
+    }
+    .dataset-thumb-link {
+      display: inline-block;
+      cursor: zoom-in;
+    }
+    .dataset-thumb {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #d9e2ec;
+      background: #ffffff;
+    }
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(10, 20, 30, 0.82);
+    }
+    .image-modal[hidden] {
+      display: none;
+    }
+    .image-modal-dialog {
+      position: relative;
+      max-width: min(92vw, 980px);
+      max-height: 92vh;
+      padding: 18px 18px 14px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+    }
+    .image-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.08);
+      color: #111827;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .image-modal-close:hover {
+      background: rgba(15, 23, 42, 0.14);
+    }
+    .image-modal-image {
+      max-width: 100%;
+      max-height: calc(92vh - 90px);
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .image-modal-caption {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: 600;
+    }
+    @media (max-width: 700px) {
+      .dataset-details summary {
+        font-size: 17px;
+      }
+      .dataset-table th,
+      .dataset-table td {
+        padding: 8px 10px;
+        font-size: 15px;
+      }
+      .dataset-thumb {
+        width: 56px;
+        height: 56px;
+      }
+      .image-modal {
+        padding: 12px;
+      }
+      .image-modal-dialog {
+        padding: 14px 14px 12px;
+      }
     }
   </style>
 </head>
@@ -217,6 +399,65 @@ permalink: /
     </tbody>
   </table>
 
+  <br>
+
+  <center><h2>Dataset</h2></center>
+  {% assign dataset_rows = site.data.dataset | default: empty %}
+  {% assign dataset_count = dataset_rows | size %}
+  <p class="dataset-summary">
+    The dataset contains {{ dataset_count }} object instances used to study pre-grasp force prediction.
+    Each entry includes the object image, its measured mass in grams, and the minimum feasible grasping force in newtons.
+    Expand the table below to browse the full dataset and inspect each object image directly.
+    Click any thumbnail to enlarge it without leaving the page.
+  </p>
+  <details class="dataset-details">
+    <summary>View full dataset ({{ dataset_count }} objects)</summary>
+    <div class="dataset-table-wrap">
+      <table class="dataset-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Object</th>
+            <th>Mass [g]</th>
+            <th>Grasp Force [N]</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if dataset_count > 0 %}
+          {% for item in dataset_rows %}
+          {% assign image_path = '/images/' | append: item["Image"] %}
+          <tr>
+            <td>
+              <a class="dataset-thumb-link" href="{{ image_path | relative_url }}" data-enlarge-image data-image-alt="{{ item['Object'] }}">
+                <img
+                  class="dataset-thumb"
+                  src="{{ image_path | relative_url }}"
+                  alt="{{ item['Object'] }}"
+                  loading="lazy">
+              </a>
+            </td>
+            <td>{{ item["Object"] }}</td>
+            <td class="dataset-number">{{ item["Mass"] }}</td>
+            <td class="dataset-number">{{ item["Gripping Force"] }}</td>
+          </tr>
+          {% endfor %}
+          {% else %}
+          <tr>
+            <td colspan="4">Dataset entries are currently unavailable.</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
   <div style="height: 40px;"></div>
+</div>
+<div class="image-modal" data-image-modal hidden>
+  <div class="image-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="image-modal-caption">
+    <button class="image-modal-close" type="button" aria-label="Close enlarged image" data-image-modal-close>&times;</button>
+    <img class="image-modal-image" data-image-modal-content alt="">
+    <div class="image-modal-caption" id="image-modal-caption" data-image-modal-caption></div>
+  </div>
 </div>
 </body>
