@@ -326,6 +326,21 @@ permalink: /
     </table>
   </p>
 
+  <center><h2>Overview Video</h2></center>
+  <table border="0" cellspacing="10" cellpadding="0" align="center" width="800px">
+    <tbody>
+      <tr>
+        <td align="center" valign="middle">
+          <video controls playsinline width="100%" style="border-radius: 4px;">
+            <source src="{{ '/src/video/ExpForce_IROS_Supplement_Final.mp4' | relative_url }}" type="video/mp4">
+          </video>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
   <center><h2>Zero-shot vs Exp-Force</h2></center>
   <table border="0" cellspacing="10" cellpadding="0" align="center" width="800px">
     <tbody>
