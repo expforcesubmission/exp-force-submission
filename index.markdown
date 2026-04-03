@@ -332,7 +332,7 @@ permalink: /
       <tr>
         <td align="center" valign="middle">
           <video controls playsinline width="100%" style="border-radius: 4px;">
-            <source src="{{ '/src/video/ExpForce_IROS_Supplement_Final.mp4' | relative_url }}" type="video/mp4">
+            <source src="{{ '/src/video/Overview.mp4' | relative_url }}" type="video/mp4">
           </video>
         </td>
       </tr>
